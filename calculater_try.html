@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculater</title>
+  <style>
+    button{
+      border-width: thick;
+      background-color: brown;
+      font-weight: bold;
+    }
+    input{
+      border-width: thick;
+      background-color: brown;
+    }
+  </style>
+</head>
+<body>
+  <input onkeydown="string_system();">
+  <button onclick="conf=!conf;calculate_System(parseInt(A),B,parseInt(C));">
+    Enter
+  </button>
+  <p class="js-result">
+
+  </p>
+
+  <script>
+    let conf=true , A='',B,C='';
+    function string_system(){
+      if(parseInt(event.key) && conf){
+        A=A+(event.key);
+      }
+      else if(!parseInt(event.key)){
+        B=event.key;
+        conf=!conf;
+      }
+      else if (parseInt(event.key) && !conf){
+        C=C+(event.key);
+      }
+    }
+    
+    function calculate_System(A,B,C){
+      if(B==='+'){result(A+C);}
+      else if(B==='*'){result(A*C);}
+      else if(B==='/'){result(A/C);}
+      else if(B==='-'){result(A-C);}
+      else{result('Error');}
+
+    }
+
+    function result(result){
+      document.querySelector('.js-result').innerHTML=result;
+      A='',B='',C='';
+    }
+  </script>
+</body>
+</html>
